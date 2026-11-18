@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "disk_name": {
+      "type": "String"
+    }
+  },
+  "resources": [
+    {
+      "apiVersion": "2026-03-02",
+      "location": "eastus",
+      "name": "[parameters('disk_name')]",
+      "properties": {
+        "creationData": {
+          "createOption": "Empty"
+        },
+        "diskIOPSReadWrite": 500,
+        "diskMBpsReadWrite": 60,
+        "diskSizeGB": 32,
+        "encryption": {
+          "type": "EncryptionAtRestWithPlatformKey"
+        },
+        "networkAccessPolicy": "AllowAll",
+        "publicNetworkAccess": "Enabled"
+      },
+      "sku": {
+        "name": "Standard_LRS",
+        "tier": "Standard"
+      },
+      "type": "Microsoft.Compute/disks"
+    }
+  ],
+  "variables": {}
+}
